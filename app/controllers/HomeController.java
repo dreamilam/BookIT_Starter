@@ -1,5 +1,6 @@
 package controllers;
 
+import play.data.FormFactory;
 import play.mvc.*;
 
 import views.html.index;
@@ -17,7 +18,8 @@ public class HomeController extends Controller {
     }
 
     public Result login(){
-        return ok(login.render());
+        return ok(login1.render());
     }
+
 
 }

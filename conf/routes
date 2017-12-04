@@ -10,6 +10,10 @@ GET     /count                      controllers.CountController.count
 GET     /message                    controllers.AsyncController.message
 
 GET     /login                      controllers.HomeController.login
+GET     /login/user                 controllers.UserController.showProfile
+GET     /create                     controllers.UserController.createUser
+GET     /create/eventManager        controllers.UserController.createEventManager
+
 
 GET     /welcome/:name/:lastName    controllers.HomeController.welcome(name : String, lastName : String)
 
@@ -19,12 +23,13 @@ GET     /users/create               controllers.UserController.createUser()
 GET     /users/:id                  controllers.UserController.show(id : Integer)
 GET     /users/edit/:id             controllers.UserController.edit(id : String)
 POST    /users/edit                 controllers.UserController.update()
-POST    /users/create               controllers.UserController.save()
+POST    /users/create               controllers.UserController.saveCustomer()
 GET     /users/delete/:id           controllers.UserController.destroy(id : Integer)
 
 
 
-POST    /createUser                 controllers.UserController.save
+POST    /createUser                 controllers.UserController.saveCustomer
+POST    /createEventManager         controllers.UserController.saveEventManager
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

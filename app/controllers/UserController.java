@@ -1,19 +1,16 @@
 package controllers;
 
+import models.Event;
+import models.EventManager;
 import models.User;
+import models.Customer;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-
-
-
-
-
 import javax.inject.Inject;
 import java.util.List;
-
 
 import views.html.User.*;
 
@@ -33,17 +30,38 @@ public class UserController extends Controller {
 
     public Result createUser(){
 
-        Form<User> userForm = formFactory.form(User.class);
-        return ok(create.render(userForm));
+        Form<Customer> customerForm = formFactory.form(Customer.class);
+        return ok(createCustomer.render(customerForm));
 
     }
 
-    public Result save(){
+    public Result createEventManager(){
+        Form<EventManager> eventManagerForm = formFactory.form(EventManager.class);
+        return ok(createEventManager.render(eventManagerForm));
+    }
 
-        Form<User> userForm= formFactory.form(User.class).bindFromRequest();
-        User user = userForm.get();
-        user.save();
+    public Result saveCustomer(){
+
+        Form<Customer> customerForm= formFactory.form(Customer.class).bindFromRequest();
+        Customer customer = customerForm.get();
+
+        customer.save();
         return redirect(routes.UserController.index());
+
+    }
+
+    public Result saveEventManager(){
+
+        Form<EventManager> eventManagerForm= formFactory.form(EventManager.class).bindFromRequest();
+        EventManager eventManager = eventManagerForm.get();
+
+        eventManager.save();
+        return redirect(routes.UserController.index());
+
+    }
+
+    public Result showProfile(){
+        return TODO;
 
     }
 

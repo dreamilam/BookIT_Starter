@@ -1,15 +1,21 @@
 package models;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+@Entity
+@DiscriminatorValue("E")
+@Table(name = "EventManager")
 public class EventManager extends User {
     private ArrayList<Event> createdEvents;
     private boolean isApproved;
 
-
+/*
 
     EventManager(){
         isApproved = false;
@@ -29,6 +35,8 @@ public class EventManager extends User {
 
         return true;
     }
+
+*/
 /*
     public boolean updateEvent(){
 

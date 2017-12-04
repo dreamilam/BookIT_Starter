@@ -1,18 +1,21 @@
 package models;
-import java.util.*;
+import com.sun.javafx.beans.IDProperty;
 import io.ebean.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="USER_TYPE")
 public class User extends Model{
 
-    public Integer userID;
     @Id
+    public Integer userID;
     public String userName;
     public String userEmail;
     public String userPassword;
+    public BigInteger phoneNo;
 
     public static Finder<String, User> find = new Finder<>(User.class);
 

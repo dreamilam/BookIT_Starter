@@ -1,21 +1,21 @@
-@(userForm: Form[User])
+@(userForm: Form[EventManager])
 
 @import helper._
 
 <html>
     <head>
-        <title>Create User</title>
+        <title>Create Event Manager</title>
     </head>
     <body>
 
         <h1>Create User</h1>
-        @helper.form(action = helper.CSRF(routes.UserController.save())){
+        @helper.form(action = helper.CSRF(routes.UserController.saveEventManager())){
             @helper.inputText(userForm("userName"))
             @helper.inputText(userForm("userEmail"))
             @helper.inputText(userForm("userPassword"))
+            @helper.inputText(userForm("phoneNo"))
 
-            <input type="submit" value="Create User">
+            <input type="submit" value="Sign up">
         }
-
     </body>
 </html>
