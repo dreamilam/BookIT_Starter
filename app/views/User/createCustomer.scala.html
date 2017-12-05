@@ -9,7 +9,7 @@
     <body>
 
         <h1>Create User</h1>
-        @helper.form(action = helper.CSRF(routes.UserController.saveCustomer())){
+        @helper.form(action = helper.CSRF(routes.CustomerController.saveCustomer())){
             @helper.inputText(userForm("userName"))
             @helper.inputText(userForm("userEmail"))
             @helper.inputText(userForm("userPassword"))

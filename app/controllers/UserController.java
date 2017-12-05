@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Event;
 import models.EventManager;
 import models.User;
 import models.Customer;
@@ -13,6 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import views.html.User.*;
+
 
 public class UserController extends Controller {
 
@@ -28,40 +28,33 @@ public class UserController extends Controller {
         return ok(index.render(users));
     }
 
-    public Result createUser(){
+    public Result verifyUser(){
+        Form<User> loginForm= formFactory.form(User.class).bindFromRequest();
+        User user = loginForm.get();
 
-        Form<Customer> customerForm = formFactory.form(Customer.class);
-        return ok(createCustomer.render(customerForm));
+        User userDB = user.find.byId(user.userEmail);
 
-    }
+        if(userDB != null){
+            if(userDB.getDecriminatorValue().equals("C")){
 
-    public Result createEventManager(){
-        Form<EventManager> eventManagerForm = formFactory.form(EventManager.class);
-        return ok(createEventManager.render(eventManagerForm));
-    }
+                return ok(showCustomerProfile.render());
+            }
 
-    public Result saveCustomer(){
+            else if(userDB.getDecriminatorValue().equals("E")){
 
-        Form<Customer> customerForm= formFactory.form(Customer.class).bindFromRequest();
-        Customer customer = customerForm.get();
+                return ok(showEventManagerProfile.render());
+            }
+            else if(userDB.getDecriminatorValue().equals("A")){
 
-        customer.save();
-        return redirect(routes.UserController.index());
+                return ok(showAdminProfile.render());
+            }
 
-    }
+            else
+                return forbidden("Not found ");
+        }
 
-    public Result saveEventManager(){
-
-        Form<EventManager> eventManagerForm= formFactory.form(EventManager.class).bindFromRequest();
-        EventManager eventManager = eventManagerForm.get();
-
-        eventManager.save();
-        return redirect(routes.UserController.index());
-
-    }
-
-    public Result showProfile(){
-        return TODO;
+        else
+            return forbidden("Not Found");
 
     }
 
@@ -80,9 +73,6 @@ public class UserController extends Controller {
         return TODO;
     }
 
-    public Result show(Integer id){
-        return TODO;
-    }
 
 
 }

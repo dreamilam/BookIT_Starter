@@ -15,4 +15,5 @@ public class Customer extends User{
     private ArrayList<Event> bookedEvents;
     private boolean hasAny;
 
+
 }

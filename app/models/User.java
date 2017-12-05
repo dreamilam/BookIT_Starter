@@ -10,13 +10,19 @@ import java.math.BigInteger;
 @DiscriminatorColumn(name="USER_TYPE")
 public class User extends Model{
 
-    @Id
+
     public Integer userID;
     public String userName;
+    @Id
     public String userEmail;
     public String userPassword;
     public BigInteger phoneNo;
 
     public static Finder<String, User> find = new Finder<>(User.class);
+
+    @Transient
+    public String getDecriminatorValue() {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
+    }
 
 }
